@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1009303799500",
+    "project_id": "flutter-crm-app",
+    "storage_bucket": "flutter-crm-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009303799500:android:d64fcc96df18880be26469",
+        "android_client_info": {
+          "package_name": "com.example.flutter_crm_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgq1WRM58AJFR5wPBCfMCBhAhcTUrz1nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
