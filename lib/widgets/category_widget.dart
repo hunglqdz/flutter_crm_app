@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crm_app/models/category.dart';
+import 'package:provider/provider.dart';
 
 import '../pages/category_page.dart';
+import '../providers/item_provider.dart';
 
 class CategoryWidget extends StatelessWidget {
   final Category category;
@@ -18,24 +20,29 @@ class CategoryWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 10),
       decoration: BoxDecoration(
-        color: Colors.grey.shade50,
-        border: Border.all(color: Colors.black),
+        color: !Provider.of<ItemClass>(context).isDark
+            ? Colors.grey.shade100
+            : null,
+        border: Border.all(color: Colors.blue, width: 5),
       ),
       child: ListTile(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const CategoryPage()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoryPage(category: category)));
         },
-        title: Text(category.name),
+        title: Text(
+          category.name,
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
         subtitle: const Text('0 items'),
         trailing: Container(
           decoration: BoxDecoration(
+            shape: BoxShape.circle,
             color: Colors.white,
             border: Border.all(color: Colors.blue),
-            borderRadius: BorderRadius.circular(5),
           ),
-          width: 50,
-          height: 50,
           child: IconButton(
             onPressed: () {
               onDelete(category.id);

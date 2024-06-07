@@ -18,14 +18,14 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final _auth = AuthService();
 
-  final _email = TextEditingController();
-  final _password = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    _email.dispose();
-    _password.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   @override
@@ -44,14 +44,14 @@ class _LoginPageState extends State<LoginPage> {
                 hint: "Enter Email",
                 label: "Email",
                 icon: Icons.email,
-                controller: _email,
+                controller: emailController,
               ),
               const SizedBox(height: 20),
               MyTextField(
                 hint: "Enter Password",
                 label: "Password",
                 icon: Icons.lock,
-                controller: _password,
+                controller: passwordController,
               ),
               const SizedBox(height: 30),
               Row(
@@ -92,8 +92,8 @@ class _LoginPageState extends State<LoginPage> {
       );
 
   _login() async {
-    final user =
-        await _auth.loginUserWithEmailAndPassword(_email.text, _password.text);
+    final user = await _auth.loginUserWithEmailAndPassword(
+        emailController.text, passwordController.text);
 
     if (user != null) {
       log("User Logged In");

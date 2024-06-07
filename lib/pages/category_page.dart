@@ -1,35 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_crm_app/models/category.dart';
+import 'package:flutter_crm_app/pages/search_item_page.dart';
+import 'package:flutter_crm_app/providers/item_provider.dart';
+import 'package:flutter_crm_app/widgets/item_widget.dart';
+import 'package:provider/provider.dart';
 
 import 'add_item_page.dart';
 
-class CategoryPage extends StatefulWidget {
-  const CategoryPage({super.key});
+class CategoryPage extends StatelessWidget {
+  final Category category;
+  const CategoryPage({super.key, required this.category});
 
-  @override
-  State<CategoryPage> createState() => _CategoryPageState();
-}
-
-class _CategoryPageState extends State<CategoryPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FilledButton.icon(
-        style:
-            ButtonStyle(backgroundColor: WidgetStateProperty.all(Colors.blue)),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddItemPage(
-                onSubmit: () {},
+    return Consumer<ItemClass>(
+        builder: (BuildContext context, myProvider, Widget? child) => Scaffold(
+              backgroundColor: !myProvider.isDark ? Colors.white : null,
+              floatingActionButton: FilledButton.icon(
+                style: ButtonStyle(
+                    backgroundColor: WidgetStateProperty.all(Colors.blue)),
+                onPressed: (() async {
+                  await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AddItemPage()));
+                }),
+                label: const Text('Item'),
+                icon: const Icon(Icons.add),
               ),
-            ),
-          );
-        },
-        icon: const Icon(Icons.add),
-        label: const Text('Item'),
-      ),
-      appBar: AppBar(),
-    );
+              appBar: AppBar(
+                title: Text(category.name),
+                centerTitle: true,
+                actions: [
+                  IconButton(
+                      onPressed: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) =>
+                                  SearchItemPage(items: myProvider.allItems)))),
+                      icon: const Icon(Icons.search))
+                ],
+              ),
+              body: ListView.builder(
+                itemCount: myProvider.allItems.length,
+                itemBuilder: (context, index) {
+                  return ItemWidget(myProvider.allItems[index]);
+                },
+              ),
+            ));
   }
 }

@@ -156,11 +156,8 @@ class _CustomerManagementPageState extends State<CustomerManagementPage> {
                                         Expanded(
                                           child: Container(
                                             decoration: const BoxDecoration(
+                                              shape: BoxShape.circle,
                                               color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.horizontal(
-                                                right: Radius.circular(10),
-                                              ),
                                             ),
                                             child: IconButton(
                                               onPressed: () async {

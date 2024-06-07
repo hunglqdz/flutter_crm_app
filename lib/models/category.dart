@@ -1,6 +1,6 @@
 class Category {
-  int id;
-  String name;
+  final int id;
+  final String name;
 
   Category({
     required this.id,

@@ -11,14 +11,7 @@ class ItemManagementPage extends StatefulWidget {
 
 class _ItemManagementPageState extends State<ItemManagementPage> {
   final List<Category> categories = [];
-  List<Category> _foundCategory = [];
-  final _categoryController = TextEditingController();
-
-  @override
-  void initState() {
-    _foundCategory = categories;
-    super.initState();
-  }
+  final categoryController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +52,8 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
         border: Border.all(color: Colors.blue),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: TextField(
-        onChanged: (value) => _searchCategory(value),
-        decoration: const InputDecoration(
+      child: const TextField(
+        decoration: InputDecoration(
           contentPadding: EdgeInsets.zero,
           prefixIcon: Icon(Icons.search),
           prefixIconConstraints: BoxConstraints(maxHeight: 20, minWidth: 25),
@@ -70,21 +62,6 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
         ),
       ),
     );
-  }
-
-  void _searchCategory(String keyword) {
-    List<Category> results = [];
-    if (keyword.isEmpty) {
-      results = categories;
-    } else {
-      results = categories
-          .where(
-              (item) => item.name.toLowerCase().contains(keyword.toLowerCase()))
-          .toList();
-    }
-    setState(() {
-      _foundCategory = results;
-    });
   }
 
   void _deleteCategory(int id) {
@@ -97,7 +74,7 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
     setState(() {
       categories.add(Category(id: 0, name: name));
     });
-    _categoryController.clear();
+    categoryController.clear();
   }
 
   Future<void> _displayDialog() async {
@@ -107,7 +84,7 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
         return AlertDialog(
           title: const Text('Add new category'),
           content: TextField(
-            controller: _categoryController,
+            controller: categoryController,
             autofocus: true,
           ),
           actions: [
@@ -120,7 +97,7 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
-                _addCategory(_categoryController.text);
+                _addCategory(categoryController.text);
               },
               child: const Text('Add', style: TextStyle(color: Colors.green)),
             ),

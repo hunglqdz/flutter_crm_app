@@ -18,16 +18,16 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final _auth = AuthService();
 
-  final _name = TextEditingController();
-  final _email = TextEditingController();
-  final _password = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
-    _name.dispose();
-    _email.dispose();
-    _password.dispose();
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   @override
@@ -46,21 +46,21 @@ class _SignUpPageState extends State<SignUpPage> {
                 hint: "Enter Name",
                 label: "Name",
                 icon: Icons.abc,
-                controller: _name,
+                controller: nameController,
               ),
               const SizedBox(height: 20),
               MyTextField(
                 hint: "Enter Email",
                 label: "Email",
                 icon: Icons.email,
-                controller: _email,
+                controller: emailController,
               ),
               const SizedBox(height: 20),
               MyTextField(
                 hint: "Enter Password",
                 label: "Password",
                 icon: Icons.lock,
-                controller: _password,
+                controller: passwordController,
               ),
               const SizedBox(height: 30),
               Row(
@@ -102,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   _signup() async {
     final user = await _auth.createUserWithEmailAndPassword(
-        _name.text, _email.text, _password.text);
+        nameController.text, emailController.text, passwordController.text);
     if (user != null) {
       log("User Created Successfully");
       goToHome(context);

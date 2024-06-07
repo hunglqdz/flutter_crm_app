@@ -16,15 +16,14 @@ class _ProfilePageState extends State<ProfilePage> {
   final user = FirebaseAuth.instance.currentUser!;
   final _auth = AuthService();
 
-  final _name = TextEditingController();
-  final _email = TextEditingController();
-  final _password = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _name.text = user.displayName!;
-    _email.text = user.email!;
+    nameController.text = user.displayName!;
+    emailController.text = user.email!;
   }
 
   @override
@@ -52,21 +51,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 hint: "Enter New Name",
                 label: "Name",
                 icon: Icons.abc,
-                controller: _name,
+                controller: nameController,
               ),
               const SizedBox(height: 20),
               MyTextField(
                 hint: "Enter New Email",
                 label: "Email",
                 icon: Icons.email,
-                controller: _email,
-              ),
-              const SizedBox(height: 20),
-              MyTextField(
-                hint: "Enter New Password",
-                label: "Password",
-                icon: Icons.lock,
-                controller: _password,
+                controller: emailController,
               ),
               const SizedBox(height: 30),
               Row(
@@ -85,9 +77,8 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   _update() async {
-    await user.updateDisplayName(_name.text);
-    await user.verifyBeforeUpdateEmail(_email.text);
-    await user.updatePassword(_password.text);
+    await user.updateDisplayName(nameController.text);
+    await user.verifyBeforeUpdateEmail(emailController.text);
   }
 
   _signout() async {

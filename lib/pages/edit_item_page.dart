@@ -1,20 +1,22 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_crm_app/models/item.dart';
 import 'package:flutter_crm_app/providers/item_provider.dart';
 import 'package:flutter_crm_app/widgets/my_button.dart';
 import 'package:flutter_crm_app/widgets/my_textfield.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
-class AddItemPage extends StatefulWidget {
-  const AddItemPage({super.key});
+class EditItemPage extends StatefulWidget {
+  final Item item;
+  const EditItemPage({super.key, required this.item});
 
   @override
-  State<AddItemPage> createState() => _AddItemPageState();
+  State<EditItemPage> createState() => _EditItemPageState();
 }
 
-class _AddItemPageState extends State<AddItemPage> {
+class _EditItemPageState extends State<EditItemPage> {
   Future pickImage(BuildContext context, ImageSource source) async {
     final image = await ImagePicker().pickImage(source: source);
     if (image == null) return;
@@ -26,19 +28,19 @@ class _AddItemPageState extends State<AddItemPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Item'),
+        title: const Text('Edit Item'),
         centerTitle: true,
       ),
       body: Consumer<ItemClass>(
         builder: (context, provider, child) => SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(25),
+          child: Container(
+            padding: const EdgeInsets.all(5),
             child: Column(
               children: [
                 Row(
                   children: [
                     PopupMenuButton(
-                      color: !provider.isDark ? Colors.blue.shade100 : null,
+                      color: !provider.isDark ? Colors.blue[100] : null,
                       itemBuilder: ((context) => [
                             PopupMenuItem(
                               onTap: (() =>
@@ -69,27 +71,27 @@ class _AddItemPageState extends State<AddItemPage> {
                 ),
                 Visibility(
                   visible: provider.image != null,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      provider.image != null
-                          ? Image.file(
-                              provider.image!,
-                              width: 200,
-                              height: 200,
-                            )
-                          : Container(),
                       IconButton(
                         onPressed: () {
                           provider.image = null;
                           setState(() {});
                         },
-                        icon: const Icon(Icons.cancel, color: Colors.red),
+                        icon: const Icon(Icons.cancel),
                       ),
+                      provider.image != null
+                          ? Image.file(
+                              provider.image!,
+                              width: 100,
+                              height: 100,
+                            )
+                          : Container(),
                     ],
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 10),
                 MyTextField(
                   hint: 'Enter Name',
                   label: 'Item Name',
@@ -103,20 +105,19 @@ class _AddItemPageState extends State<AddItemPage> {
                   icon: Icons.note,
                   controller: provider.noteController,
                 ),
-                const SizedBox(height: 30),
-                Row(
-                  children: [
-                    MyButton(
-                      label: 'Save Item',
-                      onPressed: () {
-                        provider.addNewItem();
-                        provider.nameController.clear();
-                        provider.noteController.clear();
-                        provider.image = null;
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
+                const SizedBox(height: 20),
+                MyButton(
+                  label: 'Save Changes',
+                  onPressed: () {
+                    widget.item.name = provider.nameController.text;
+                    widget.item.note = provider.noteController.text;
+                    widget.item.image = provider.image;
+                    provider.updateItem(widget.item);
+                    provider.nameController.clear();
+                    provider.noteController.clear();
+                    provider.image = null;
+                    Navigator.pop(context);
+                  },
                 ),
               ],
             ),
