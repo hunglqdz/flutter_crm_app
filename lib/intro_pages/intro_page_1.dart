@@ -10,7 +10,7 @@ class IntroPage1 extends StatelessWidget {
       children: [
         Image.asset('assets/images/illustration1.jpg'),
         const Text(
-          'Welcome to our Customer Relationship Management Software!',
+          'Powerful Mobile CRM',
           textAlign: TextAlign.center,
           style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         ),

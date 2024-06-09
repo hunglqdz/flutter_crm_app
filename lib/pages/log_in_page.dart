@@ -8,14 +8,14 @@ import 'package:flutter_crm_app/widgets/my_textfield.dart';
 import '../auth/auth_service.dart';
 import 'sign_up_page.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class LogInPage extends StatefulWidget {
+  const LogInPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<LogInPage> createState() => _LogInPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LogInPageState extends State<LogInPage> {
   final _auth = AuthService();
 
   final emailController = TextEditingController();
@@ -38,26 +38,25 @@ class _LoginPageState extends State<LoginPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text("Welcome back",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               MyTextField(
-                hint: "Enter Email",
                 label: "Email",
                 icon: Icons.email,
                 controller: emailController,
               ),
               const SizedBox(height: 20),
               MyTextField(
-                hint: "Enter Password",
                 label: "Password",
-                icon: Icons.lock,
+                icon: Icons.password,
                 controller: passwordController,
               ),
               const SizedBox(height: 30),
               Row(
                 children: [
                   MyButton(
-                    label: "Login",
+                    label: "Log In",
                     onPressed: _login,
                   ),
                 ],
@@ -66,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text("First-time user?"),
+                  const Text("Do not have an account?"),
                   TextButton(
                     onPressed: () => goToSignup(context),
                     child: const Text("Sign Up",

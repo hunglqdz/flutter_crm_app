@@ -63,7 +63,7 @@ class ItemPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Center(
-                  child: Text(item.name),
+                  child: Text(item.note),
                 ),
               ],
             ),

@@ -57,7 +57,7 @@ class _CustomerManagementPageState extends State<CustomerManagementPage> {
         label: const Text('Customer'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(25),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
         child: Column(
           children: [
             searchBox(),
@@ -124,6 +124,10 @@ class _CustomerManagementPageState extends State<CustomerManagementPage> {
                                       ),
                                     );
                                   },
+                                  onLongPress: () async {
+                                    await customerDB.delete(customer.id);
+                                    fetchCustomers();
+                                  },
                                   child: Container(
                                     margin: const EdgeInsets.only(top: 20),
                                     decoration: BoxDecoration(
@@ -160,11 +164,7 @@ class _CustomerManagementPageState extends State<CustomerManagementPage> {
                                               color: Colors.white,
                                             ),
                                             child: IconButton(
-                                              onPressed: () async {
-                                                await customerDB
-                                                    .delete(customer.id);
-                                                fetchCustomers();
-                                              },
+                                              onPressed: () async {},
                                               icon: const Icon(
                                                 Icons.call,
                                                 color: Colors.green,

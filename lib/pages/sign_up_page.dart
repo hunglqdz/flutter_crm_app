@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_crm_app/home_page.dart';
-import 'package:flutter_crm_app/pages/login_page.dart';
+import 'package:flutter_crm_app/pages/log_in_page.dart';
 import 'package:flutter_crm_app/widgets/my_button.dart';
 import 'package:flutter_crm_app/widgets/my_textfield.dart';
 
@@ -39,27 +39,25 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Create new account",
+              const Text("Create your account",
+                  textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
-              const SizedBox(height: 50),
+              const SizedBox(height: 30),
               MyTextField(
-                hint: "Enter Name",
                 label: "Name",
-                icon: Icons.abc,
+                icon: Icons.person,
                 controller: nameController,
               ),
               const SizedBox(height: 20),
               MyTextField(
-                hint: "Enter Email",
                 label: "Email",
                 icon: Icons.email,
                 controller: emailController,
               ),
               const SizedBox(height: 20),
               MyTextField(
-                hint: "Enter Password",
                 label: "Password",
-                icon: Icons.lock,
+                icon: Icons.password,
                 controller: passwordController,
               ),
               const SizedBox(height: 30),
@@ -78,7 +76,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   const Text("Already have an account?"),
                   TextButton(
                     onPressed: () => goToLogin(context),
-                    child: const Text("Login",
+                    child: const Text("Log In",
                         style: TextStyle(color: Colors.blue, fontSize: 20)),
                   ),
                 ],
@@ -92,7 +90,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   goToLogin(BuildContext context) => Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
+        MaterialPageRoute(builder: (context) => const LogInPage()),
       );
 
   goToHome(BuildContext context) => Navigator.push(

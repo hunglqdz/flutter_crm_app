@@ -30,7 +30,6 @@ class CategoryPage extends StatelessWidget {
               ),
               appBar: AppBar(
                 title: Text(category.name),
-                centerTitle: true,
                 actions: [
                   IconButton(
                       onPressed: () => Navigator.push(

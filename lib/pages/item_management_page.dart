@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_crm_app/models/category.dart';
 import 'package:flutter_crm_app/widgets/category_widget.dart';
@@ -24,13 +26,15 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
         label: const Text('Category'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
         child: Column(
           children: [
             searchBox(),
             const SizedBox(height: 10),
             Expanded(
-              child: ListView(
+              child: GridView(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
                 children: categories.map((Category category) {
                   return CategoryWidget(
                     category: category,
@@ -72,7 +76,7 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
 
   void _addCategory(String name) {
     setState(() {
-      categories.add(Category(id: 0, name: name));
+      categories.add(Category(id: Random().nextInt(100), name: name));
     });
     categoryController.clear();
   }
@@ -82,6 +86,7 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Colors.blue.shade100,
           title: const Text('Add new category'),
           content: TextField(
             controller: categoryController,

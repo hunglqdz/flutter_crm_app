@@ -29,12 +29,11 @@ class _EditItemPageState extends State<EditItemPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Edit Item'),
-        centerTitle: true,
       ),
       body: Consumer<ItemClass>(
         builder: (context, provider, child) => SingleChildScrollView(
-          child: Container(
-            padding: const EdgeInsets.all(5),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
             child: Column(
               children: [
                 Row(
@@ -71,36 +70,34 @@ class _EditItemPageState extends State<EditItemPage> {
                 ),
                 Visibility(
                   visible: provider.image != null,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      provider.image != null
+                          ? Image.file(
+                              provider.image!,
+                              width: 200,
+                              height: 200,
+                            )
+                          : Container(),
                       IconButton(
                         onPressed: () {
                           provider.image = null;
                           setState(() {});
                         },
-                        icon: const Icon(Icons.cancel),
+                        icon: const Icon(Icons.cancel, color: Colors.red),
                       ),
-                      provider.image != null
-                          ? Image.file(
-                              provider.image!,
-                              width: 100,
-                              height: 100,
-                            )
-                          : Container(),
                     ],
                   ),
                 ),
                 const SizedBox(height: 10),
                 MyTextField(
-                  hint: 'Enter Name',
                   label: 'Item Name',
-                  icon: Icons.abc,
+                  icon: Icons.person,
                   controller: provider.nameController,
                 ),
                 const SizedBox(height: 20),
                 MyTextField(
-                  hint: 'Enter Note',
                   label: 'Item Note',
                   icon: Icons.note,
                   controller: provider.noteController,

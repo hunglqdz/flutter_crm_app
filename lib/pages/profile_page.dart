@@ -30,8 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile Page'),
-        centerTitle: true,
+        title: const Text('My Profile'),
         actions: [
           IconButton(onPressed: _signout, icon: const Icon(Icons.logout))
         ],
@@ -42,20 +41,24 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const CircleAvatar(
+              CircleAvatar(
                 radius: 50,
-                child: Icon(Icons.person, size: 50),
+                child: Text(
+                  user.displayName!.substring(0, 1).toUpperCase(),
+                  style: const TextStyle(
+                    fontSize: 50,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               const SizedBox(height: 30),
               MyTextField(
-                hint: "Enter New Name",
                 label: "Name",
-                icon: Icons.abc,
+                icon: Icons.person,
                 controller: nameController,
               ),
               const SizedBox(height: 20),
               MyTextField(
-                hint: "Enter New Email",
                 label: "Email",
                 icon: Icons.email,
                 controller: emailController,

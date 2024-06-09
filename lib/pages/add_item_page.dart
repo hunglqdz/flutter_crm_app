@@ -27,12 +27,11 @@ class _AddItemPageState extends State<AddItemPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add New Item'),
-        centerTitle: true,
       ),
       body: Consumer<ItemClass>(
         builder: (context, provider, child) => SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
             child: Column(
               children: [
                 Row(
@@ -91,14 +90,12 @@ class _AddItemPageState extends State<AddItemPage> {
                 ),
                 const SizedBox(height: 30),
                 MyTextField(
-                  hint: 'Enter Name',
                   label: 'Item Name',
                   icon: Icons.abc,
                   controller: provider.nameController,
                 ),
                 const SizedBox(height: 20),
                 MyTextField(
-                  hint: 'Enter Note',
                   label: 'Item Note',
                   icon: Icons.note,
                   controller: provider.noteController,

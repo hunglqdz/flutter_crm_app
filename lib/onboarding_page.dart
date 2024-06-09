@@ -5,7 +5,7 @@ import 'package:flutter_crm_app/intro_pages/intro_page_3.dart';
 import 'package:flutter_crm_app/pages/sign_up_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import 'pages/login_page.dart';
+import 'pages/log_in_page.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -46,10 +46,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginPage()));
+                                builder: (context) => const LogInPage()));
                       },
                       child: const Text(
-                        'Login',
+                        'Log In',
                         style: TextStyle(color: Colors.blue, fontSize: 20),
                       ),
                     ),

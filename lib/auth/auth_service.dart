@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_crm_app/pages/login_page.dart';
+import 'package:flutter_crm_app/pages/log_in_page.dart';
 
 class AuthService {
   final _auth = FirebaseAuth.instance;
@@ -41,7 +41,7 @@ class AuthService {
     try {
       await _auth.signOut();
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const LoginPage()));
+          context, MaterialPageRoute(builder: (context) => const LogInPage()));
     } catch (e) {
       log(e.toString());
     }

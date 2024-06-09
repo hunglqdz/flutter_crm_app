@@ -5,7 +5,9 @@ import 'package:flutter_crm_app/pages/item_management_page.dart';
 import 'package:flutter_crm_app/providers/item_provider.dart';
 import 'package:provider/provider.dart';
 
+import 'pages/customer_care_page.dart';
 import 'pages/profile_page.dart';
+import 'pages/reports_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -22,13 +24,13 @@ class _HomePageState extends State<HomePage> {
     'Item Management',
     'Customer Management',
     'Customer Care',
-    'Statistic',
+    'Reports',
   ];
   List<Widget> pages = [
     const ItemManagementPage(),
     const CustomerManagementPage(),
-    const Center(child: Text('Customer Care Page')),
-    const Center(child: Text('Statistic Page')),
+    const CustomerCarePage(),
+    const ReportsPage(),
   ];
 
   void onTapped(int index) {
@@ -41,7 +43,6 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
         title: Text(titles[selectedIndex]),
       ),
       drawer: Consumer<ItemClass>(
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.store),
                 title: Text(titles[0]),
                 selected: selectedIndex == 0,
-                selectedColor: Colors.blue,
+                selectedTileColor: Colors.blue,
                 onTap: () {
                   onTapped(0);
                   Navigator.pop(context);
@@ -78,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.people),
                 title: Text(titles[1]),
                 selected: selectedIndex == 1,
-                selectedColor: Colors.blue,
+                selectedTileColor: Colors.blue,
                 onTap: () {
                   onTapped(1);
                   Navigator.pop(context);
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.help),
                 title: Text(titles[2]),
                 selected: selectedIndex == 2,
-                selectedColor: Colors.blue,
+                selectedTileColor: Colors.blue,
                 onTap: () {
                   onTapped(2);
                   Navigator.pop(context);
@@ -98,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                 leading: const Icon(Icons.auto_graph),
                 title: Text(titles[3]),
                 selected: selectedIndex == 3,
-                selectedColor: Colors.blue,
+                selectedTileColor: Colors.blue,
                 onTap: () {
                   onTapped(3);
                   Navigator.pop(context);

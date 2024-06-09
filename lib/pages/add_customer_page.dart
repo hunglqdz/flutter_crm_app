@@ -39,13 +39,12 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(isEditing ? 'Edit Customer' : 'Add Customer'),
-        centerTitle: true,
       ),
       body: Form(
         key: formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.all(25),
+            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
             child: Column(
               children: [
                 // TextFormField(
@@ -56,23 +55,20 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                 //       value != null && value.isEmpty ? 'Name is required' : null,
                 // ),
                 MyTextField(
-                  icon: Icons.abc,
-                  hint: 'Enter Name',
+                  icon: Icons.person,
                   label: 'Name',
                   controller: nameController,
                 ),
                 const SizedBox(height: 20),
                 MyTextField(
                   icon: Icons.phone,
-                  hint: 'Enter Phone',
                   label: 'Phone',
                   controller: phoneController,
                 ),
                 const SizedBox(height: 20),
 
                 MyTextField(
-                  icon: Icons.house,
-                  hint: 'Enter Home Address',
+                  icon: Icons.location_city,
                   label: 'Address',
                   controller: addressController,
                 ),
@@ -80,7 +76,6 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
 
                 MyTextField(
                   icon: Icons.email,
-                  hint: 'Enter Email',
                   label: 'Email',
                   controller: emailController,
                 ),

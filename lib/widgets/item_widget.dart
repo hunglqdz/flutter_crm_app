@@ -24,19 +24,19 @@ class ItemWidget extends StatelessWidget {
                 : null,
             borderRadius: BorderRadius.circular(10)),
         margin: const EdgeInsets.all(10),
-        padding: const EdgeInsets.all(10),
         child: ListTile(
           tileColor:
               !Provider.of<ItemClass>(context).isDark ? Colors.blue[100] : null,
           leading: item.image == null
-              ? const CircleAvatar(
-                  radius: 50,
-                  backgroundColor: Colors.white,
+              ? Container(
+                  color: Colors.white,
+                  width: 100,
+                  height: 100,
                 )
               : Image.file(
                   item.image!,
                   width: 100,
-                  height: double.infinity,
+                  height: 100,
                 ),
           title: Text(
             item.name,

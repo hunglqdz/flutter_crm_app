@@ -50,7 +50,7 @@ class _SearchItemPageState extends State<SearchItemPage> {
         ],
       ),
       body: Container(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
         child: widget.filteredItems.isNotEmpty
             ? ListView.builder(
                 itemCount: widget.filteredItems.length,
