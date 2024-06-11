@@ -15,7 +15,6 @@ class CategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<ItemClass>(
         builder: (BuildContext context, myProvider, Widget? child) => Scaffold(
-              backgroundColor: !myProvider.isDark ? Colors.white : null,
               floatingActionButton: FilledButton.icon(
                 style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(Colors.blue)),
@@ -33,19 +32,29 @@ class CategoryPage extends StatelessWidget {
                 actions: [
                   IconButton(
                       onPressed: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) =>
-                                  SearchItemPage(items: myProvider.allItems)))),
+                            context,
+                            MaterialPageRoute(
+                              builder: ((context) => SearchItemPage(
+                                  items: myProvider.allItems,
+                                  filteredItems: const [])),
+                            ),
+                          ),
                       icon: const Icon(Icons.search))
                 ],
               ),
-              body: ListView.builder(
-                itemCount: myProvider.allItems.length,
-                itemBuilder: (context, index) {
-                  return ItemWidget(myProvider.allItems[index]);
-                },
-              ),
+              body: myProvider.allItems.isEmpty
+                  ? const Center(
+                      child: Text('Please add some items'),
+                    )
+                  : GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2),
+                      itemCount: myProvider.allItems.length,
+                      itemBuilder: (context, index) {
+                        return ItemWidget(myProvider.allItems[index]);
+                      },
+                    ),
             ));
   }
 }

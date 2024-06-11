@@ -57,7 +57,7 @@ class _CustomerManagementPageState extends State<CustomerManagementPage> {
         label: const Text('Customer'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+        padding: const EdgeInsets.all(25),
         child: Column(
           children: [
             searchBox(),

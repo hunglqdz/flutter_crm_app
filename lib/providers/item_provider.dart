@@ -9,12 +9,6 @@ class ItemClass extends ChangeNotifier {
     getItems();
   }
 
-  bool isDark = false;
-  changeMode() {
-    isDark = !isDark;
-    notifyListeners();
-  }
-
   final nameController = TextEditingController();
   final noteController = TextEditingController();
   File? image;

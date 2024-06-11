@@ -3,7 +3,7 @@ import 'dart:io';
 class Item {
   int? id;
   late final String name;
-  late final String note;
+  String? note;
   File? image;
 
   Item({

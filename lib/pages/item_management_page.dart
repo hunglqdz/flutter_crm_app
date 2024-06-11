@@ -26,7 +26,7 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
         label: const Text('Category'),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+        padding: const EdgeInsets.all(25),
         child: Column(
           children: [
             searchBox(),
@@ -86,7 +86,6 @@ class _ItemManagementPageState extends State<ItemManagementPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.blue.shade100,
           title: const Text('Add new category'),
           content: TextField(
             controller: categoryController,

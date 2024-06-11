@@ -18,12 +18,12 @@ class StoreData {
   Future<String> saveData({
     required String name,
     required String note,
-    required Uint8List file,
+    Uint8List? file,
   }) async {
     String response = 'Some Error Occurred';
     try {
       if (name.isNotEmpty || note.isNotEmpty) {
-        String imageUrl = await uploadImageToStorage('itemImage', file);
+        String imageUrl = await uploadImageToStorage('itemImage', file!);
         await _firestore.collection('item').add({
           'name': name,
           'note': note,

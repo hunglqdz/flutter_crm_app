@@ -34,10 +34,8 @@ class CategoryWidget extends StatelessWidget {
           decoration: BoxDecoration(
             border: Border.all(),
             borderRadius: BorderRadius.circular(10),
-            color: !Provider.of<ItemClass>(context).isDark
-                ? Color((math.Random().nextDouble() * 0xffffff).toInt())
-                    .withOpacity(0.5)
-                : Colors.grey,
+            color: Color((math.Random().nextDouble() * 0xffffff).toInt())
+                .withOpacity(0.5),
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

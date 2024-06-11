@@ -33,17 +33,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const OnboardingPage(),
-      theme: Provider.of<ItemClass>(context).isDark
-          ? ThemeData.dark()
-          : ThemeData(
-              primarySwatch: Colors.blue,
-              scaffoldBackgroundColor: Colors.white,
-              primaryColor: Colors.grey,
-              dialogBackgroundColor: Colors.blue.shade100,
-            ),
+      home: OnboardingPage(),
     );
   }
 }

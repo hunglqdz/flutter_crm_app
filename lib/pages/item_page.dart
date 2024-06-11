@@ -19,7 +19,7 @@ class ItemPage extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   provider.nameController.text = item.name;
-                  provider.noteController.text = item.note;
+                  provider.noteController.text = item.note!;
                   provider.image = item.image;
                   Navigator.push(
                       context,
@@ -43,9 +43,7 @@ class ItemPage extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                      color: !Provider.of<ItemClass>(context).isDark
-                          ? Colors.blue
-                          : null,
+                      color: Colors.blue,
                       borderRadius: BorderRadius.circular(5)),
                   height: 170,
                   child: item.image == null
@@ -63,7 +61,7 @@ class ItemPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Center(
-                  child: Text(item.note),
+                  child: Text(item.note!),
                 ),
               ],
             ),

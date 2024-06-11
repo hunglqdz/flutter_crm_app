@@ -44,7 +44,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
         key: formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+            padding: const EdgeInsets.all(25),
             child: Column(
               children: [
                 // TextFormField(

@@ -42,17 +42,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(titles[selectedIndex]),
-      ),
+      appBar: AppBar(title: Text(titles[selectedIndex])),
       drawer: Consumer<ItemClass>(
         builder: (BuildContext context, myProvider, Widget? child) => Drawer(
           child: ListView(
             padding: EdgeInsets.zero,
             children: [
               DrawerHeader(
-                decoration: BoxDecoration(
-                    color: !myProvider.isDark ? Colors.blue : null),
+                decoration: const BoxDecoration(color: Colors.blue),
                 child: ListTile(
                   leading: const CircleAvatar(child: Icon(Icons.person)),
                   title: Text(user.displayName!),
@@ -105,25 +102,6 @@ class _HomePageState extends State<HomePage> {
                   Navigator.pop(context);
                 },
               ),
-              Provider.of<ItemClass>(context).isDark
-                  ? ListTile(
-                      leading: const Icon(Icons.light_mode),
-                      title: const Text('Light Mode'),
-                      onTap: () {
-                        Provider.of<ItemClass>(context, listen: false)
-                            .changeMode();
-                        Navigator.pop(context);
-                      },
-                    )
-                  : ListTile(
-                      leading: const Icon(Icons.dark_mode),
-                      title: const Text('Dark Mode'),
-                      onTap: () {
-                        Provider.of<ItemClass>(context, listen: false)
-                            .changeMode();
-                        Navigator.pop(context);
-                      },
-                    ),
             ],
           ),
         ),

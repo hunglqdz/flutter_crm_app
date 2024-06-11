@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+
 import 'package:flutter_crm_app/widgets/item_widget.dart';
 
 import '../models/item.dart';
@@ -7,7 +8,11 @@ import '../models/item.dart';
 class SearchItemPage extends StatefulWidget {
   final List<Item> items;
   List<Item> filteredItems = [];
-  SearchItemPage({super.key, required this.items}) {
+  SearchItemPage({
+    super.key,
+    required this.items,
+    required this.filteredItems,
+  }) {
     filteredItems = items;
   }
 

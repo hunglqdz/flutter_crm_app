@@ -31,13 +31,12 @@ class _AddItemPageState extends State<AddItemPage> {
       body: Consumer<ItemClass>(
         builder: (context, provider, child) => SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 50),
+            padding: const EdgeInsets.all(25),
             child: Column(
               children: [
                 Row(
                   children: [
                     PopupMenuButton(
-                      color: !provider.isDark ? Colors.blue.shade100 : null,
                       itemBuilder: ((context) => [
                             PopupMenuItem(
                               onTap: (() =>
